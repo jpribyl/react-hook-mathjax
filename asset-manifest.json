@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-hook-mathjax/static/css/main.77ed7596.chunk.css",
+    "main.js": "/react-hook-mathjax/static/js/main.44ec225d.chunk.js",
+    "main.js.map": "/react-hook-mathjax/static/js/main.44ec225d.chunk.js.map",
+    "runtime-main.js": "/react-hook-mathjax/static/js/runtime-main.34f0f7ad.js",
+    "runtime-main.js.map": "/react-hook-mathjax/static/js/runtime-main.34f0f7ad.js.map",
+    "static/js/2.501e6ec6.chunk.js": "/react-hook-mathjax/static/js/2.501e6ec6.chunk.js",
+    "static/js/2.501e6ec6.chunk.js.map": "/react-hook-mathjax/static/js/2.501e6ec6.chunk.js.map",
+    "index.html": "/react-hook-mathjax/index.html",
+    "precache-manifest.0a1038239cedc2557b7368f3c0581954.js": "/react-hook-mathjax/precache-manifest.0a1038239cedc2557b7368f3c0581954.js",
+    "service-worker.js": "/react-hook-mathjax/service-worker.js",
+    "static/css/main.77ed7596.chunk.css.map": "/react-hook-mathjax/static/css/main.77ed7596.chunk.css.map",
+    "static/js/2.501e6ec6.chunk.js.LICENSE.txt": "/react-hook-mathjax/static/js/2.501e6ec6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34f0f7ad.js",
+    "static/js/2.501e6ec6.chunk.js",
+    "static/css/main.77ed7596.chunk.css",
+    "static/js/main.44ec225d.chunk.js"
+  ]
+}
