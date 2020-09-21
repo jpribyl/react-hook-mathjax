@@ -1,0 +1,37 @@
+{
+  "name": "react-hook-mathjax",
+  "version": "1.0.1",
+  "description": "Lightweight package using MathJax to allow inline rendering of latex as svg elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist && tsc",
+    "prepare": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpribyl/react-hook-mathjax.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "hooks",
+    "mathjax",
+    "latex",
+    "svg",
+    "render"
+  ],
+  "author": "Johnny Pribyl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpribyl/react-hook-mathjax/issues"
+  },
+  "homepage": "https://github.com/jpribyl/react-hook-mathjax#readme",
+  "devDependencies": {
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^4.0.3"
+  }
+}
