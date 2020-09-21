@@ -9,6 +9,8 @@ string into an svg. For more details, please see the
 [example project](https://github.com/jpribyl/react-hook-mathjax/tree/master/example)
 . It looks at parsing user input and managing error states.
 
+![Example of usage](/example_input.gif)
+
 ## Install
 ```
 yarn add react-hook-mathjax
@@ -17,7 +19,6 @@ yarn add react-hook-mathjax
 ## Usage
 
 ### Basic inline display
-![Example of usage](/example_inline.gif)
 
 ```jsx
 import React from "react";
@@ -58,7 +59,6 @@ function App() {
 export default App;
 ```
 ### Parsing user input
-![Example of usage](/example_input.gif)
 
 ```jsx
 import React from "react";
