@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "strict": true,
     "jsx": "react"
   },
