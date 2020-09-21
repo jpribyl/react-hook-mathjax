@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input[type=text] {
+  font-size: 2.5rem;
+  border-radius: 8px;
+  height: 3rem;
+  width: 35%;
+}
+
+input[type=text]:focus {
+  border: 4px solid lightblue;
+}
+
+input[type=text].error {
+  border: 4px solid red;
+}
+
+.tex {
+  color: #a0a0a0;
+}
