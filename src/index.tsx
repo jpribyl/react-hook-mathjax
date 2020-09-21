@@ -44,7 +44,7 @@ export const MathJaxProvider: React.FC<ContextProps> = ({
 
 type Tex2SVGProps = any & { latex: string; onError?: () => void };
 const Tex2SVG: React.FC<Tex2SVGProps> = ({ latex = '', onError = () => {}, ...props }) => {
-  const mathJax = useContext(MathJaxContext);
+  const mathJax = useContext(MathJaxContext) || null;
   const [html, setHtml] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLElement | null>(null);
   const hasError = !!html?.outerHTML.match(/data-mjx-error/);
@@ -54,7 +54,7 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({ latex = '', onError = () => {}, ...pr
   }, [hasError, onError]);
 
   useEffect(() => {
-    setHtml((mathJax as any).tex2svg?.(latex));
+    setHtml((mathJax as any | null)?.tex2svg?.(latex));
   }, [mathJax, latex]);
 
   useEffect(() => {
@@ -68,6 +68,12 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({ latex = '', onError = () => {}, ...pr
 
     return () => {};
   }, [props, html]);
+
+  if (!mathJax) {
+    console.error('MathJax is not available! Are you using <Tex2SVG> outside of <MathJaxContext>?')
+    return null
+  }
+
 
   return <span ref={ref} />;
 };
