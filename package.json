@@ -2,7 +2,7 @@
   "name": "react-hook-mathjax",
   "version": "1.0.2",
   "description": "Lightweight package using MathJax to allow inline rendering of latex as svg elements",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && tsc",
