@@ -65,16 +65,27 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({
   const hasError = !!html?.outerHTML.match(/data-mjx-error/);
 
   useEffect(() => {
-    setHtml((mathJax as any | null)?.tex2svg?.(latex));
+    async function setMathJaxHTML() {
+      try {
+        setHtml(await (mathJax as any | null)?.tex2svgPromise?.(latex));
+      } catch (e) {
+        console.error(
+          "Something went really wrong, if this problem persists then please open an issue",
+          e,
+        );
+      }
+    }
+
+    setMathJaxHTML();
   }, [mathJax, latex]);
 
   useEffect(() => {
-    if (html && hasError) onError();
-    if (html && !hasError) onSuccess();
+    if (html && hasError) onError(html);
+    if (html && !hasError) onSuccess(html);
   }, [html]);
 
   useEffect(() => {
-    if (html) {
+    if (html && !hasError) {
       Object.keys(props).map((key) => html.setAttribute(key, props[key]));
       ref.current?.appendChild(html);
       return () => {

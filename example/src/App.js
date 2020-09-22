@@ -1,31 +1,40 @@
 import React from "react";
 import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
+const getErrorFromHTML = (html) =>
+  html.children[1].firstChild.firstChild.dataset.mjxError;
+
 function App() {
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState("\\ket{b}");
   const [latex, setLatex] = React.useState("");
-  const [hasError, setHasError] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const hasError = error !== null;
 
   return (
     <MathJaxProvider>
       <div className="App">
         <header className="App-header">
+          <h3>React Hook MathJax</h3>
           <input
             className={`${hasError ? "error" : ""}`}
             type="text"
+            defaultValue={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
-              setHasError(false);
+              setError(null);
             }}
           />
 
-          <Tex2SVG
-            class="tex"
-            tabindex={-1}
-            latex={hasError ? latex : inputValue}
-            onSuccess={() => setLatex(hasError ? latex : inputValue)}
-            onError={() => setHasError(true)}
-          />
+          <div className="tex-container">
+            <Tex2SVG
+              class="tex"
+              tabindex={-1}
+              latex={hasError ? latex : inputValue}
+              onSuccess={() => setLatex(hasError ? latex : inputValue)}
+              onError={(html) => setError(getErrorFromHTML(html))}
+            />
+          </div>
+          {hasError && <>hint: {error}</>}
         </header>
       </div>
     </MathJaxProvider>
