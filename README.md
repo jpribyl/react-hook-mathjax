@@ -154,7 +154,7 @@ function App() {
               onError={html => setError(getErrorFromHTML(html))}
             />
           </div>
-          {hasError && <>hint: {error}</>}
+          {hasError && <div>hint: {error}</div>}
         </header>
       </div>
     </MathJaxProvider>
