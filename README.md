@@ -103,7 +103,6 @@ function App() {
           <div className="tex-container">
             <Tex2SVG class="tex" tabindex={-1} latex={inputValue} />
           </div>
-          {hasError && <>hint: {error}</>}
         </header>
       </div>
     </MathJaxProvider>
