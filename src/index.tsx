@@ -8,15 +8,15 @@ import React, {
 
 declare global {
   interface Window {
-    MathJax: any;
+    MathJax: { [key: string]: any };
   }
 }
 
-type ContextProps = {
+export type ContextProps = {
   options?: {};
 };
 
-const MathJaxContext = createContext(null);
+const MathJaxContext = createContext({});
 export const MathJaxProvider: React.FC<ContextProps> = ({
   options = {},
   children = null,
@@ -48,15 +48,15 @@ export const MathJaxProvider: React.FC<ContextProps> = ({
   );
 };
 
-type Tex2SVGProps = any & {
+export type Tex2SVGProps = { [key: string]: any } & {
   latex: string;
-  onError?: () => void;
-  onSuccess?: () => void;
+  onError?: (html: HTMLElement) => void;
+  onSuccess?: (html: HTMLElement) => void;
 };
 const Tex2SVG: React.FC<Tex2SVGProps> = ({
   latex = "",
-  onError = () => {},
-  onSuccess = () => {},
+  onError = (html: HTMLElement) => {},
+  onSuccess = (html: HTMLElement) => {},
   ...props
 }) => {
   const mathJax = useContext(MathJaxContext) || null;
@@ -67,7 +67,9 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({
   useEffect(() => {
     async function setMathJaxHTML() {
       try {
-        setHtml(await (mathJax as any | null)?.tex2svgPromise?.(latex));
+        setHtml(
+          await ((mathJax as Window["MathJax"] | null))?.tex2svgPromise?.(latex),
+        );
       } catch (e) {
         console.error(
           "Something went really wrong, if this problem persists then please open an issue",

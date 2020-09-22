@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hook-mathjax": "^1.0.8",
+    "react-hook-mathjax": "^1.0.10",
     "react-scripts": "3.4.3"
   },
   "scripts": {
