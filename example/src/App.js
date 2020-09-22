@@ -1,8 +1,8 @@
 import React from "react";
 import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
-const getErrorFromHTML = html =>
-  html.children[1].firstChild.firstChild.dataset.mjxError;
+const getErrorFromHTML = (html) =>
+  html.children[1].firstChild.firstChild.attributes["data-mjx-error"].value;
 
 function App() {
   const [inputValue, setInputValue] = React.useState(

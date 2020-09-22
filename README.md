@@ -22,6 +22,26 @@ yarn add react-hook-mathjax
 import React from "react";
 import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
+function App() {
+  return (
+    <MathJaxProvider options={mathJaxOptions}>
+      <div className="App">
+        <header className="App-header">
+          <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
+        </header>
+      </div>
+    </MathJaxProvider>
+  );
+}
+
+export default App;
+```
+
+### Customizing MathJax options
+```jsx
+import React from "react";
+import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
+
 // This object contains the default options, more info at:
 // http://docs.mathjax.org/en/latest/options/output/svg.html 
 const mathJaxOptions = {
@@ -47,7 +67,7 @@ function App() {
     <MathJaxProvider options={mathJaxOptions}>
       <div className="App">
         <header className="App-header">
-          <Tex2SVG display="inline" latex="\Omega" />
+          <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
         </header>
       </div>
     </MathJaxProvider>
@@ -56,14 +76,49 @@ function App() {
 
 export default App;
 ```
+
+
 ### Parsing user input
 
 ```jsx
 import React from "react";
 import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
-const getErrorFromHTML = html =>
-  html.children[1].firstChild.firstChild.dataset.mjxError;
+function App() {
+  const [inputValue, setInputValue] = React.useState(
+    "G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\kappa T_{\\mu\\nu}",
+  );
+
+  return (
+    <MathJaxProvider>
+      <div className="App">
+        <header className="App-header">
+          <h3>React Hook MathJax</h3>
+          <input
+            type="text"
+            defaultValue={inputValue}
+            onChange={e => setInputValue(e.target.value)}
+          />
+
+          <div className="tex-container">
+            <Tex2SVG class="tex" tabindex={-1} latex={inputValue} />
+          </div>
+          {hasError && <>hint: {error}</>}
+        </header>
+      </div>
+    </MathJaxProvider>
+  );
+}
+
+export default App;
+```
+### Handling error states
+```jsx
+import React from "react";
+import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
+
+const getErrorFromHTML = (html) =>
+  html.children[1].firstChild.firstChild.attributes["data-mjx-error"].value;
 
 function App() {
   const [inputValue, setInputValue] = React.useState(
