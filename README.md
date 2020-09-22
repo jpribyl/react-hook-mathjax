@@ -24,7 +24,7 @@ import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
 function App() {
   return (
-    <MathJaxProvider options={mathJaxOptions}>
+    <MathJaxProvider>
       <div className="App">
         <header className="App-header">
           <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
