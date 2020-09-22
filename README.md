@@ -62,12 +62,14 @@ export default App;
 import React from "react";
 import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
 
-const getErrorFromHTML = (html) =>
+const getErrorFromHTML = html =>
   html.children[1].firstChild.firstChild.dataset.mjxError;
 
 function App() {
-  const [inputValue, setInputValue] = React.useState("G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\kappa T_{\\mu\\nu}");
-  const [latex, setLatex] = React.useState("");
+  const [inputValue, setInputValue] = React.useState(
+    "G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\kappa T_{\\mu\\nu}",
+  );
+  const [lastValidInput, setLastValidInput] = React.useState("");
   const [error, setError] = React.useState(null);
   const hasError = error !== null;
 
@@ -80,7 +82,7 @@ function App() {
             className={`${hasError ? "error" : ""}`}
             type="text"
             defaultValue={inputValue}
-            onChange={(e) => {
+            onChange={e => {
               setInputValue(e.target.value);
               setError(null);
             }}
@@ -90,9 +92,11 @@ function App() {
             <Tex2SVG
               class="tex"
               tabindex={-1}
-              latex={hasError ? latex : inputValue}
-              onSuccess={() => setLatex(hasError ? latex : inputValue)}
-              onError={(html) => setError(getErrorFromHTML(html))}
+              latex={hasError ? lastValidInput : inputValue}
+              onSuccess={() =>
+                setLastValidInput(hasError ? lastValidInput : inputValue)
+              }
+              onError={html => setError(getErrorFromHTML(html))}
             />
           </div>
           {hasError && <>hint: {error}</>}
@@ -103,7 +107,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 
