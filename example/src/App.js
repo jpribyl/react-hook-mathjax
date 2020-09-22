@@ -5,7 +5,7 @@ const getErrorFromHTML = (html) =>
   html.children[1].firstChild.firstChild.dataset.mjxError;
 
 function App() {
-  const [inputValue, setInputValue] = React.useState("\\ket{b}");
+  const [inputValue, setInputValue] = React.useState("G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\kappa T_{\\mu\\nu}");
   const [latex, setLatex] = React.useState("");
   const [error, setError] = React.useState(null);
   const hasError = error !== null;
