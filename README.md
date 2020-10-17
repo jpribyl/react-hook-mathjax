@@ -21,17 +21,15 @@ yarn add react-hook-mathjax
 
 ```jsx
 import React from "react";
-import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
+import Tex2SVG  from "react-hook-mathjax";
 
 function App() {
   return (
-    <MathJaxProvider>
-      <div className="App">
-        <header className="App-header">
-          <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
-        </header>
-      </div>
-    </MathJaxProvider>
+    <div className="App">
+      <header className="App-header">
+        <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
+      </header>
+    </div>
   );
 }
 
@@ -83,7 +81,7 @@ export default App;
 
 ```jsx
 import React from "react";
-import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
+import Tex2SVG from "react-hook-mathjax";
 
 function App() {
   const [inputValue, setInputValue] = React.useState(
@@ -91,22 +89,20 @@ function App() {
   );
 
   return (
-    <MathJaxProvider>
-      <div className="App">
-        <header className="App-header">
-          <h3>React Hook MathJax</h3>
-          <input
-            type="text"
-            defaultValue={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-          />
+    <div className="App">
+      <header className="App-header">
+        <h3>React Hook MathJax</h3>
+        <input
+          type="text"
+          defaultValue={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+        />
 
-          <div className="tex-container">
-            <Tex2SVG class="tex" tabindex={-1} latex={inputValue} />
-          </div>
-        </header>
-      </div>
-    </MathJaxProvider>
+        <div className="tex-container">
+          <Tex2SVG class="tex" tabindex={-1} latex={inputValue} />
+        </div>
+      </header>
+    </div>
   );
 }
 
@@ -115,7 +111,7 @@ export default App;
 ### Handling error states
 ```jsx
 import React from "react";
-import Tex2SVG, { MathJaxProvider } from "react-hook-mathjax";
+import Tex2SVG from "react-hook-mathjax";
 
 const getErrorFromHTML = (html) =>
   html.children[1].firstChild.firstChild.attributes["data-mjx-error"].value;
@@ -129,35 +125,33 @@ function App() {
   const hasError = error !== null;
 
   return (
-    <MathJaxProvider>
-      <div className="App">
-        <header className="App-header">
-          <h3>React Hook MathJax</h3>
-          <input
-            className={`${hasError ? "error" : ""}`}
-            type="text"
-            defaultValue={inputValue}
-            onChange={e => {
-              setInputValue(e.target.value);
-              setError(null);
-            }}
-          />
+    <div className="App">
+      <header className="App-header">
+        <h3>React Hook MathJax</h3>
+        <input
+          className={`${hasError ? "error" : ""}`}
+          type="text"
+          defaultValue={inputValue}
+          onChange={e => {
+            setInputValue(e.target.value);
+            setError(null);
+          }}
+        />
 
-          <div className="tex-container">
-            <Tex2SVG
-              class="tex"
-              tabindex={-1}
-              latex={hasError ? lastValidInput : inputValue}
-              onSuccess={() =>
-                setLastValidInput(hasError ? lastValidInput : inputValue)
-              }
-              onError={html => setError(getErrorFromHTML(html))}
-            />
-          </div>
-          {hasError && <>hint: {error}</>}
-        </header>
-      </div>
-    </MathJaxProvider>
+        <div className="tex-container">
+          <Tex2SVG
+            class="tex"
+            tabindex={-1}
+            latex={hasError ? lastValidInput : inputValue}
+            onSuccess={() =>
+              setLastValidInput(hasError ? lastValidInput : inputValue)
+            }
+            onError={html => setError(getErrorFromHTML(html))}
+          />
+        </div>
+        {hasError && <>hint: {error}</>}
+      </header>
+    </div>
   );
 }
 

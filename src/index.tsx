@@ -25,17 +25,24 @@ export const MathJaxProvider: React.FC<ContextProps> = ({
   const [mathJax, setMathJax] = useState(window.MathJax || options);
 
   useEffect(() => {
-    if (!window.MathJax) {
+    const existingScript = document.getElementById("mathjax-script");
+
+    if (existingScript) {
+      const onLoad = existingScript.onload as () => {};
+      existingScript.onload = () => {
+        onLoad();
+        setMathJax(window.MathJax);
+      };
+    }
+
+    if (!existingScript && !window.MathJax) {
       const script = document.createElement("script");
       window.MathJax = mathJax;
+      script.id = "mathjax-script";
       script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
       script.async = true;
       script.onload = () => setMathJax(window.MathJax);
-      ref.current?.appendChild(script);
-
-      return () => {
-        ref.current?.removeChild(script);
-      };
+      document.head.appendChild(script);
     }
 
     return () => {};
@@ -48,6 +55,46 @@ export const MathJaxProvider: React.FC<ContextProps> = ({
   );
 };
 
+export function useTexSVG({
+  latex = "",
+  onSuccess = (html: HTMLElement) => {},
+  onError = (html: HTMLElement) => {},
+} = {}): [HTMLElement | null, { error: boolean; isLoading: boolean }] {
+  const mathJax: Window["MathJax"] | null = useContext(MathJaxContext) || null;
+  const [html, setHtml] = useState<HTMLElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const error = !!html?.outerHTML.match(/data-mjx-error/);
+
+  useEffect(() => {
+    async function setMathJaxHTML() {
+      if (mathJax?.tex2svgPromise) {
+        try {
+          setIsLoading(true);
+          const mathJaxElement = await mathJax.tex2svgPromise(latex);
+
+          setHtml(mathJaxElement);
+        } catch (e) {
+          console.error(
+            "Something went really wrong, if this problem persists then please open an issue",
+            e,
+          );
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    setMathJaxHTML();
+  }, [mathJax, latex]);
+
+  useEffect(() => {
+    if (html && error) onError(html);
+    if (html && !error) onSuccess(html);
+  }, [html]);
+
+  return [html, { error, isLoading }];
+}
+
 export type Tex2SVGProps = { [key: string]: any } & {
   latex: string;
   onError?: (html: HTMLElement) => void;
@@ -59,35 +106,11 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({
   onSuccess = (html: HTMLElement) => {},
   ...props
 }) => {
-  const mathJax = useContext(MathJaxContext) || null;
-  const [html, setHtml] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLElement | null>(null);
-  const hasError = !!html?.outerHTML.match(/data-mjx-error/);
+  const [html, { error }] = useTexSVG({ latex, onError, onSuccess });
 
   useEffect(() => {
-    async function setMathJaxHTML() {
-      try {
-        setHtml(
-          await ((mathJax as Window["MathJax"] | null))?.tex2svgPromise?.(latex),
-        );
-      } catch (e) {
-        console.error(
-          "Something went really wrong, if this problem persists then please open an issue",
-          e,
-        );
-      }
-    }
-
-    setMathJaxHTML();
-  }, [mathJax, latex]);
-
-  useEffect(() => {
-    if (html && hasError) onError(html);
-    if (html && !hasError) onSuccess(html);
-  }, [html]);
-
-  useEffect(() => {
-    if (html && !hasError) {
+    if (html && !error) {
       Object.keys(props).map((key) => html.setAttribute(key, props[key]));
       ref.current?.appendChild(html);
       return () => {
@@ -98,14 +121,13 @@ const Tex2SVG: React.FC<Tex2SVGProps> = ({
     return () => {};
   }, [props, html]);
 
-  if (!mathJax) {
-    console.error(
-      "MathJax is not available! Are you using <Tex2SVG> outside of <MathJaxContext>?",
-    );
-    return null;
-  }
-
   return <span ref={ref} />;
 };
 
-export default Tex2SVG;
+const Tex2SVGWithProvider: React.FC<Tex2SVGProps> = (props) => (
+  <MathJaxProvider>
+    <Tex2SVG {...props} />
+  </MathJaxProvider>
+);
+
+export default Tex2SVGWithProvider;
