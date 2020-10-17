@@ -21,7 +21,7 @@ yarn add react-hook-mathjax
 
 ```jsx
 import React from "react";
-import Tex2SVG  from "react-hook-mathjax";
+import Tex2SVG from "react-hook-mathjax";
 
 function App() {
   return (
