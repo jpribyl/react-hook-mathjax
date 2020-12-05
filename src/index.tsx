@@ -67,10 +67,12 @@ export function useTexSVG({
 
   useEffect(() => {
     async function setMathJaxHTML() {
-      if (mathJax?.tex2svgPromise) {
+      const isReady = await mathJax?.loader.ready?.()
+
+      if (isReady) {
         try {
           setIsLoading(true);
-          const mathJaxElement = await mathJax.tex2svgPromise(latex);
+          const mathJaxElement = await mathJax!.tex2svgPromise(latex);
 
           setHtml(mathJaxElement);
         } catch (e) {
@@ -100,7 +102,7 @@ export type Tex2SVGProps = { [key: string]: any } & {
   onError?: (html: HTMLElement) => void;
   onSuccess?: (html: HTMLElement) => void;
 };
-const Tex2SVG: React.FC<Tex2SVGProps> = ({
+export const Tex2SVG: React.FC<Tex2SVGProps> = ({
   latex = "",
   onError = (html: HTMLElement) => {},
   onSuccess = (html: HTMLElement) => {},
