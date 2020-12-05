@@ -8747,10 +8747,10 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
-react-hook-mathjax@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-hook-mathjax/-/react-hook-mathjax-2.0.3.tgz#68bdf718d2cd7966a4574369f3681ee058cd0c70"
-  integrity sha512-Od6qY30Sg6KIziwa3hzlkNOl9G8i5gGCi2Sgo7vizg51L0c5+LN/NWdZapdkZ9Cc39a0JpNTkufdjfBnGM3zXA==
+react-hook-mathjax@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-hook-mathjax/-/react-hook-mathjax-2.0.5.tgz#bd15e5cca38cd6c3a2564b68a380beaf9f6814cd"
+  integrity sha512-AtOWIhrVGpO5dVplEZWf8G8Z6kGyxpNH5Xc7MPIdOm/d/o+s13ZMta+YClsZpFGbhAccpoHyeZ59YJE1IelMLQ==
 
 react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
