@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fc64eb065a5a447810a5f6e162992f3c",
+    "revision": "c7c58a8945b4b8fbee65cb54b1d5939b",
     "url": "/react-hook-mathjax/index.html"
   },
   {
@@ -8,12 +8,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-hook-mathjax/static/css/main.2b909b2d.chunk.css"
   },
   {
-    "revision": "663c23fd980e71aa1f37",
-    "url": "/react-hook-mathjax/static/js/2.82afc2d3.chunk.js"
+    "revision": "b65b2dfb72225f3ee3b4",
+    "url": "/react-hook-mathjax/static/js/2.12388635.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/react-hook-mathjax/static/js/2.82afc2d3.chunk.js.LICENSE.txt"
+    "url": "/react-hook-mathjax/static/js/2.12388635.chunk.js.LICENSE.txt"
   },
   {
     "revision": "5681f272343efc5c2bb5",

@@ -5,17 +5,17 @@
     "main.js.map": "/react-hook-mathjax/static/js/main.7465942f.chunk.js.map",
     "runtime-main.js": "/react-hook-mathjax/static/js/runtime-main.34f0f7ad.js",
     "runtime-main.js.map": "/react-hook-mathjax/static/js/runtime-main.34f0f7ad.js.map",
-    "static/js/2.82afc2d3.chunk.js": "/react-hook-mathjax/static/js/2.82afc2d3.chunk.js",
-    "static/js/2.82afc2d3.chunk.js.map": "/react-hook-mathjax/static/js/2.82afc2d3.chunk.js.map",
+    "static/js/2.12388635.chunk.js": "/react-hook-mathjax/static/js/2.12388635.chunk.js",
+    "static/js/2.12388635.chunk.js.map": "/react-hook-mathjax/static/js/2.12388635.chunk.js.map",
     "index.html": "/react-hook-mathjax/index.html",
-    "precache-manifest.d35c6ecd3f5c0765b7884121376005a7.js": "/react-hook-mathjax/precache-manifest.d35c6ecd3f5c0765b7884121376005a7.js",
+    "precache-manifest.d2c0bfbc7b9d856731325db455a495a1.js": "/react-hook-mathjax/precache-manifest.d2c0bfbc7b9d856731325db455a495a1.js",
     "service-worker.js": "/react-hook-mathjax/service-worker.js",
     "static/css/main.2b909b2d.chunk.css.map": "/react-hook-mathjax/static/css/main.2b909b2d.chunk.css.map",
-    "static/js/2.82afc2d3.chunk.js.LICENSE.txt": "/react-hook-mathjax/static/js/2.82afc2d3.chunk.js.LICENSE.txt"
+    "static/js/2.12388635.chunk.js.LICENSE.txt": "/react-hook-mathjax/static/js/2.12388635.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.34f0f7ad.js",
-    "static/js/2.82afc2d3.chunk.js",
+    "static/js/2.12388635.chunk.js",
     "static/css/main.2b909b2d.chunk.css",
     "static/js/main.7465942f.chunk.js"
   ]
