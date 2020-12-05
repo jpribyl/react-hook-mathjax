@@ -67,7 +67,7 @@ export function useTexSVG({
 
   useEffect(() => {
     async function setMathJaxHTML() {
-      const isReady = await mathJax?.loader.ready?.()
+      const isReady = mathJax?.tex2svgPromise || await mathJax?.loader?.ready?.();
 
       if (isReady) {
         try {
