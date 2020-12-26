@@ -63,13 +63,12 @@ const mathJaxOptions = {
 
 function App() {
   return (
-    <MathJaxProvider options={mathJaxOptions}>
-      <div className="App">
-        <header className="App-header">
-          <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
-        </header>
-      </div>
-    </MathJaxProvider>
+    <MathJaxProvider options={mathJaxOptions} />
+    <div className="App">
+      <header className="App-header">
+        <Tex2SVG display="inline" latex="e^{i \pi} + 1 = 0" />
+      </header>
+    </div>
   );
 }
 
